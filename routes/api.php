@@ -20,10 +20,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/user-login', 'UserController@login');
 
-Route::resource('/location', 'LocationController');
-Route::resource('/category', 'CategoryController');
-Route::resource('/gallery', 'GalleryController');
-Route::resource('/sub-category', 'SubCategoryController');
-Route::resource('/user', 'UserController');
-Route::post('/location/update-custom/{id}', 'LocationController@updateCustom');
-Route::post('/gallery/update-custom/{id}', 'GalleryController@updateCustom');
+Route::group(['middleware' => ['auth:api']], function () {
+    Route::resource('/location', 'LocationController');
+    Route::resource('/category', 'CategoryController');
+    Route::resource('/gallery', 'GalleryController');
+    Route::resource('/sub-category', 'SubCategoryController');
+    Route::resource('/user', 'UserController');
+    Route::post('/location/update-custom/{id}', 'LocationController@updateCustom');
+    Route::post('/gallery/update-custom/{id}', 'GalleryController@updateCustom');
+});
+
+Route::get('/location', 'LocationController@index');
