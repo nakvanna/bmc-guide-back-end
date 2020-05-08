@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/bmcgdeaf/back.bmcguide.com/
+    - /bin/cp -r * $DEPLOYPATH
