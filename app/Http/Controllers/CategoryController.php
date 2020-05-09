@@ -37,7 +37,7 @@ class CategoryController extends Controller
     {
         $input = $request->all();
         $request->validate([
-            'category' => 'required'
+            'category' => 'required',
         ]);
         $store = new Category();
         $store->category = $input['category'];

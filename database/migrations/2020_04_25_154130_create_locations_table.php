@@ -26,7 +26,7 @@ class CreateLocationsTable extends Migration
             $table->string('tel');
             $table->string('email');
             $table->string('can_do');
-            $table->text('about');
+            $table->text('about')->default('No data yet!');
             $table->timestamps();
         });
     }

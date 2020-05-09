@@ -51,7 +51,6 @@ class LocationController extends Controller
             'tel'            => 'required',
             'email'          => 'required',
             'can_do'         => 'required',
-            'about'          => 'required',
         ]);
         $img = Image::make($thumbnail)->encode('png',100);
         $name = uniqid().'-'.time() . '.png';

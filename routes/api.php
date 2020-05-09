@@ -31,3 +31,4 @@ Route::group(['middleware' => ['auth:api']], function () {
 });
 
 Route::get('/location', 'LocationController@index');
+Route::get('/category', 'CategoryController@index');
