@@ -52,7 +52,7 @@ class SponsorController extends Controller
         Storage::disk('public')->put('images/'.$name, $img);
 
         $store = new Sponsor();
-        $store-> image = Storage::url('images/'.$name);
+        $store-> image = url(Storage::url('images/'.$name));
         $store-> price = $input['price'];
         $store-> name = $input['name'];
         $store-> user_id = $input['user_id'];
@@ -123,7 +123,7 @@ class SponsorController extends Controller
             $img = Image::make($image)->encode('png',100);
             $name = uniqid().'-'.time() . '.png';
             Storage::disk('public')->put('images/'.$name, $img);
-            $update-> image = Storage::url('images/'.$name);
+            $update-> image = url(Storage::url('images/'.$name));
         }
 
         $update-> price = $input['price'];

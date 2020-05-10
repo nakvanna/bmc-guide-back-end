@@ -53,7 +53,7 @@ class GalleryController extends Controller
             
             $store = new Gallery();
             $store->location_id = $input['location_id'];
-            $store->galleries = Storage::url('images/'.$name);
+            $store->galleries = url(torage::url('images/'.$name));
             $store->save();
         }
         // return $store;
@@ -75,7 +75,7 @@ class GalleryController extends Controller
 
             $update = new Gallery();
             $update->location_id = $input['location_id'];
-            $update->galleries = Storage::url('images/'.$name);
+            $update->galleries = url(Storage::url('images/'.$name));
             $update->save();
         }
         return Location::where('id', $input['location_id'])->with('gallery')->first();

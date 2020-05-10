@@ -62,7 +62,7 @@ class LocationController extends Controller
         $store-> category = $input['category'];
         $store-> sub_category = $input['sub_category'];
         $store-> location_coord = $input['location_coord'];
-        $store-> thumbnail = Storage::url('images/'.$name);
+        $store-> thumbnail = url(Storage::url('images/'.$name));
         $store-> website = $input['website'];
         $store-> tel = $input['tel'];
         $store-> email = $input['email'];
@@ -104,34 +104,34 @@ class LocationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $input = $request->all();
-        $request->validate([
-            'name'           => 'required',
-            'category'       => 'required',
-            'sub_category'   => 'required',
-            'location_coord' => 'required',
-            // 'thumbnail'      => 'required',
-            'website'        => 'required',
-            'tel'            => 'required',
-            'email'          => 'required',
-            'can_do'         => 'required',
-            'about'          => 'required',
-        ]);
+        // $input = $request->all();
+        // $request->validate([
+        //     'name'           => 'required',
+        //     'category'       => 'required',
+        //     'sub_category'   => 'required',
+        //     'location_coord' => 'required',
+        //     // 'thumbnail'      => 'required',
+        //     'website'        => 'required',
+        //     'tel'            => 'required',
+        //     'email'          => 'required',
+        //     'can_do'         => 'required',
+        //     'about'          => 'required',
+        // ]);
 
-        $update = Location::findOrFail($id);
-        $update-> name = $input['name'];
-        $update-> category = $input['category'];
-        $update-> sub_category = $input['sub_category'];
-        $update-> location_coord = $input['location_coord'];
-        // $update-> thumbnail = Storage::url('images/'.$name);
-        $update-> website = $input['website'];
-        $update-> tel = $input['tel'];
-        $update-> email = $input['email'];
-        $update-> can_do = $input['can_do'];
-        $update-> about = $input['about'];
+        // $update = Location::findOrFail($id);
+        // $update-> name = $input['name'];
+        // $update-> category = $input['category'];
+        // $update-> sub_category = $input['sub_category'];
+        // $update-> location_coord = $input['location_coord'];
+        // // $update-> thumbnail = Storage::url('images/'.$name);
+        // $update-> website = $input['website'];
+        // $update-> tel = $input['tel'];
+        // $update-> email = $input['email'];
+        // $update-> can_do = $input['can_do'];
+        // $update-> about = $input['about'];
 
-        $update->save();
-        return Location::find($update->id);
+        // $update->save();
+        // return Location::find($update->id);
     }
 
 
@@ -157,7 +157,7 @@ class LocationController extends Controller
             $img = Image::make($thumbnail)->encode('png',90);
             $name = uniqid().'-'.time() . '.png';
             Storage::disk('public')->put('images/'.$name, $img);
-            $update-> thumbnail = Storage::url('images/'.$name);
+            $update-> thumbnail = url(Storage::url('images/'.$name));
         }
         
         $update-> user_id = $input['user_id'];
