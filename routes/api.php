@@ -26,9 +26,12 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::resource('/gallery', 'GalleryController');
     Route::resource('/sub-category', 'SubCategoryController');
     Route::resource('/user', 'UserController');
+    Route::resource('/sponsor', 'SponsorController');
     Route::post('/location/update-custom/{id}', 'LocationController@updateCustom');
     Route::post('/gallery/update-custom/{id}', 'GalleryController@updateCustom');
+    Route::post('/sponsor/update-custom/{id}', 'SponsorController@updateCustom');
 });
 
 Route::get('/location', 'LocationController@index');
 Route::get('/category', 'CategoryController@index');
+Route::get('/sponsor', 'SponsorController@index');
