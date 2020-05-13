@@ -52,7 +52,7 @@ class GalleryController extends Controller
             
             $store = new Gallery();
             $store->location_id = $input['location_id'];
-            $store->galleries = url(torage::url('images/'.$name));
+            $store->galleries = url(Storage::url('images/'.$name));
             $store->save();
         }
         // return $store;
