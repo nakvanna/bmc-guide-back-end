@@ -27,6 +27,9 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::resource('/sub-category', 'SubCategoryController');
     Route::resource('/user', 'UserController');
     Route::resource('/sponsor', 'SponsorController');
+    Route::resource('/blog', 'BlogController');
+    Route::resource('/blog-gallery', 'BlogGalleryController');
+
     Route::post('/location/update-custom/{id}', 'LocationController@updateCustom');
     Route::post('/gallery/update-custom/{id}', 'GalleryController@updateCustom');
     Route::post('/sponsor/update-custom/{id}', 'SponsorController@updateCustom');
@@ -35,3 +38,4 @@ Route::group(['middleware' => ['auth:api']], function () {
 Route::get('/location', 'LocationController@index');
 Route::get('/category', 'CategoryController@index');
 Route::get('/sponsor', 'SponsorController@index');
+Route::get('/blog', 'BlogController@index');

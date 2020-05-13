@@ -16,8 +16,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-        $location = Location::with('gallery')->get();
-        return $location;
+        return Location::with('gallery')->get();
     }
 
     /**
