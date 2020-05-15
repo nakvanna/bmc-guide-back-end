@@ -92,14 +92,39 @@ class BlogGalleryController extends Controller
         //
     }
 
+    public function updateCustom(Request $request, $id){
+        $galleries = $request->file('galleries');
+        $input = $request->all();
+        $request -> validate([
+            'galleries'   => 'required',
+            'blog_id' => 'required',
+        ]);
+        
+        foreach($galleries as $file){
+            $img = Image::make($file)->encode('png', 100);
+            $name = uniqid().'-'.time() . '.png';
+            Storage::disk('public')->put('images/'.$name, $img);
+
+            $update = new BlogGallery();
+            $update->blog_id = $input['blog_id'];
+            $update->galleries = url(Storage::url('images/'.$name));
+            $update->save();
+        }
+        return BlogGallery::where('id', $input['blog_id'])->with('blog_gallery')->first();
+    }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\BlogGallery  $blogGallery
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BlogGallery $blogGallery)
+    public function destroy($id)
     {
-        //
+        $path = BlogGallery::where('id', $id)->get('gallery')[0]['gallery'];
+        $p_path = explode('/', $path);
+        $name = $p_path[3];
+        BlogGallery::findOrFail($id)->delete();
+        Storage::disk('public')->delete("images/".$name);
     }
 }

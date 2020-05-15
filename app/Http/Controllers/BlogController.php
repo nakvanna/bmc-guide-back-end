@@ -78,9 +78,21 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request, $id)
     {
-        //
+        // return $request;
+        $input = $request->all();
+        $request->validate([
+            'title'=>'required',
+            'post_by'=>'required',
+            'description'=>'required',
+        ]);
+        $update = Blog::findOrFail($id);
+        $update ->title = $input['title'];
+        $update ->post_by = $input['post_by'];
+        $update ->description = $input['description'];
+        $update->save();
+        return $update;
     }
 
     /**
